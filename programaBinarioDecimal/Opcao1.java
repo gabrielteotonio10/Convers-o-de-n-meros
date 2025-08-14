@@ -2,52 +2,68 @@ package programaBinarioDecimal;
 import java.util.Scanner;
 
 public class Opcao1 {
-        
+    //Scanner
     private static final Scanner scanner = new Scanner(System.in);
-
-    static void conversao(float numFloat)
+    //Convertendo binário em decimal
+    static void conversao(float num)
     {
-        int numInt= (int) numFloat;
-        float numConvertido= 0;
-        int acumulador= 1;
+        int numInt= (int) num;
+        float numConvertido= 0.0f;
+        float acumulador= 1;
         while(numInt!=0)
         {
             int resto= numInt%10;
-            if(resto==1) numConvertido= numConvertido+acumulador;
+            if(resto==1) numConvertido= numConvertido + acumulador;
             numInt /= 10;
             acumulador *= 2;
         }
+        numInt= (int) num;
+        float numFloat= num- numInt;
+        int i=0;
+        acumulador= 1f/2;
+        numFloat *= 10;
+        numInt= (int) numFloat;
+        while (i<10 && (numInt==0 || numInt==1)) {
+            if(numInt==1) numConvertido= numConvertido + acumulador;
+            acumulador /= 2f;
+            numFloat -= numInt;
+            i++;
+            numFloat *= 10;
+            numInt= (int) numFloat;
+        }
         System.out.println("Número convetido: ");
-        System.out.println(numFloat + "(2) = " + numConvertido + "(10) ");
+        System.out.println(num + "(2) = " + numConvertido + "(10) ");
     }
-
-    static boolean verificacao(float numFloat)
+    //Verificar se o número é binário
+    static boolean verificacao(float num)
     {
-        int num= (int) numFloat;
+        int numVerifica= (int) num;
         boolean teste= true;
-        if(num<0) teste= false;
-        while (teste && num>0) {
-            int digito = num % 10;
+        if(numVerifica<0) teste= false;
+        while (teste && numVerifica>0) {
+            int digito = numVerifica % 10;
             if(digito!=0 && digito!=1) teste= false;
-            num /=10;
+            numVerifica /=10;
         }
         return teste;
     }
-
+    //Digitar número binário
     static void numeroBinario()
     {
-        float num=0;
+        float num= 0;
+        String numString;
         boolean erro= true;
         while (erro)
         {
-            System.out.print("Digite o número binário: ");
-            num= scanner.nextInt();
+            System.out.print("Digite o número binário[máx 10 casas decimais]: ");
+            numString= scanner.next();
+            num= Float.parseFloat(numString);
             if(verificacao(num)) erro= false;
             else System.out.println("Erro: Apenas número binário");
         }
         conversao(num);
     }
-    
+    //Escolher opção
     static int escolha()
     {
         int x=0;
@@ -61,7 +77,7 @@ public class Opcao1 {
         }
         return x;
     }
-
+    //Parte principal
     public static void opcao1()
     {
         int x;

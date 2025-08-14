@@ -3,32 +3,48 @@ package programaBinarioDecimal;
 import java.util.Scanner;
 
 public class Opcao2 {
+    //Scanner
     private static final Scanner scanner = new Scanner(System.in);
-
-    static void conversao(float numFloat)
+    //Conversão decimal para binário
+    static void conversao(float num)
     {
-        int numInt= (int) numFloat;
+        int numInt= (int) num;
         float numConvertido= 0;
-        int acumulador= 1;
-        while(numInt>1)
+        float acumulador= 1;
+        while(numInt>=1)
         {
             int resto= numInt%2;
             if(resto!=0) numConvertido += acumulador;
             acumulador *=10;
             numInt /= 2;
         }
-        System.out.println("Número convetido: ");
-        System.out.println(numFloat + "(10) = " + numConvertido + "(2) ");
-    }
 
+        numInt= (int) num;
+        float numFloat= num- numInt;
+        int i=0;
+        acumulador= 0.1f;
+        while (i<10) {
+            numInt= (int) numFloat*2;
+            if(numInt==1) numConvertido+= acumulador;
+            else ;
+            numFloat *=2 - numInt;
+            acumulador /= 10;
+            i++;
+        }
+        System.out.println("Número convetido: ");
+        System.out.println(num + "(10) = " + numConvertido + "(2) ");
+    }
+    //Digitar número decimal
     static void numeroDecimal()
     {
         float num=0;
+        String numString;
         System.out.print("Digite o número decimal: ");
-        num= scanner.nextInt();
+        numString= scanner.next();
+        num= Float.parseFloat(numString);
         conversao(num);
     }
-
+    //Escolhen opção
     static int escolha()
     {
         int x=0;
@@ -42,7 +58,7 @@ public class Opcao2 {
         }
         return x;
     }
-
+    //Parte principal
     static void opcao2()
     {
         int x;

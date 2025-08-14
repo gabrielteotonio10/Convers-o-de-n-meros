@@ -2,16 +2,16 @@ package programaBinarioDecimal;
 import java.util.Scanner;
 
 public class Main {
-    
+    //Scanner
     private static final Scanner scanner = new Scanner(System.in);
-
+    //Escritas do menu
     static void menu() {
         System.out.println("\n------MENU------\n");
         System.out.println("1- Converter binário em decimal");
         System.out.println("2- Converter decimal em binário");
         System.out.println("3- Sair");
     }
-    
+    //Escolher opção
     static int escolha() {
         int x = 0;
         boolean erro = true;
@@ -26,7 +26,7 @@ public class Main {
         }
         return x;
     }
-
+    //Main
     public static void main(String[] args) {
         System.out.println("Bem vindo ao programa!\n");
         int x;
