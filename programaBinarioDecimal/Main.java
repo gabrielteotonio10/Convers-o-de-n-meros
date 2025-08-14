@@ -38,7 +38,7 @@ public class Main {
                     Opcao1.opcao1();
                     break;
                 case 2:
-                    //opcao2();
+                    Opcao2.opcao2();
                     break;
                 case 3:
                     System.out.println("Saindo do programa...");
