@@ -8,31 +8,36 @@ public class Opcao2 {
     //Conversão decimal para binário
     static void conversao(float num)
     {
+        //Parte inteira
         int numInt= (int) num;
-        float numConvertido= 0;
-        float acumulador= 1;
-        while(numInt>=1)
-        {
-            int resto= numInt%2;
-            if(resto!=0) numConvertido += acumulador;
-            acumulador *=10;
-            numInt /= 2;
+        String binarioInt = "";
+        if (numInt == 0) {
+            binarioInt = "0";
+        } else {
+            while (numInt > 0) {
+                int resto = numInt % 2;
+                binarioInt = resto + binarioInt;
+                numInt /= 2;
+            }
         }
-
-        numInt= (int) num;
-        float numFloat= num- numInt;
-        int i=0;
-        acumulador= 0.1f;
-        while (i<10) {
-            numInt= (int) numFloat*2;
-            if(numInt==1) numConvertido+= acumulador;
-            else ;
-            numFloat *=2 - numInt;
-            acumulador /= 10;
-            i++;
+        //Parte decimal
+        String binarioFloat = ""; 
+        float numFloat = num - (int) num;
+        int i = 0;
+        
+        if (numFloat > 0) {
+            binarioFloat += "."; 
+            while (numFloat > 0 && i < 10) { 
+                numFloat *= 2;
+                int digito = (int) numFloat;
+                binarioFloat += digito;
+                numFloat -= digito;
+                i++;
+            }
         }
+        //Mensagens 
         System.out.println("Número convetido: ");
-        System.out.println(num + "(10) = " + numConvertido + "(2) ");
+        System.out.println(num + "(10) = " + binarioInt + binarioFloat + "(2) ");
     }
     //Digitar número decimal
     static void numeroDecimal()

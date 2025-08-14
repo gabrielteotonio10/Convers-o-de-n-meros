@@ -7,6 +7,7 @@ public class Opcao1 {
     //Convertendo binário em decimal
     static void conversao(float num)
     {
+        //Parte inteira
         int numInt= (int) num;
         float numConvertido= 0.0f;
         float acumulador= 1;
@@ -17,6 +18,7 @@ public class Opcao1 {
             numInt /= 10;
             acumulador *= 2;
         }
+        //Parte decimal
         numInt= (int) num;
         float numFloat= num- numInt;
         int i=0;
@@ -31,6 +33,7 @@ public class Opcao1 {
             numFloat *= 10;
             numInt= (int) numFloat;
         }
+        //Mensagens
         System.out.println("Número convetido: ");
         System.out.println(num + "(2) = " + numConvertido + "(10) ");
     }
